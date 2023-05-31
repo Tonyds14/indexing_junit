@@ -6,7 +6,9 @@
   <name>AdelosSantosIndexing</name>
   
   <properties>
-	<junit.jupiter.version>5.9.1</junit.jupiter.version>
+        <java.version>1.8</java.version>
+        <junit-jupiter.version>5.5.2</junit-jupiter.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
     
   <dependencies>	
@@ -38,13 +40,7 @@
 	<dependency>
 		<groupId>org.junit.jupiter</groupId>
 		<artifactId>junit-jupiter-engine</artifactId>
-		<version>${junit.jupiter.version}</version>
-		<scope>test</scope>
-	</dependency>	
-	<dependency>
-		<groupId>org.junit.jupiter</groupId>
-		<artifactId>junit-jupiter-api</artifactId>
-		<version>${junit.jupiter.version}</version>	
+		<version>5.5.2</version>
 		<scope>test</scope>
 	</dependency>
 	
@@ -55,28 +51,44 @@
 	    <scope>test</scope>
 	</dependency>
 	
+	<dependency>
+		<groupId>org.jacoco</groupId>
+		<artifactId>jacoco-maven-plugin</artifactId>
+		<version>0.8.5</version>
+	</dependency>
+	
 	</dependencies>	
 	
 	<build>
         <plugins>
 			<plugin>
-      			<artifactId>maven-surefire-plugin</artifactId>
-      			<version>3.0.0-M5</version>
-      			<configuration>
-        		<!-- Activate the use of TCP to transmit events to the plugin -->
-        		<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>
-      			</configuration>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+				<!-- Activate the use of TCP to transmit events to the plugin -->			
+				<forkNode implementation="org.apache.maven.plugin.surefire.extensions.SurefireForkNodeFactory"/>		
+				</configuration>
+			</plugin>	
 
-    		</plugin>
-			<plugin>
+			<plugin>	
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
 				<version>2.22.0</version>
 			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.2</version><executions>
+				<version>0.8.5</version><executions>
 				<execution>
 				<goals>
 				<goal>prepare-agent</goal>
@@ -91,14 +103,7 @@
 				</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-				<source>1.8</source>
-				<target>1.8</target>
-				</configuration>
-			</plugin>
+		
 			
         </plugins>
     </build>
