@@ -138,7 +138,7 @@ public class Main {
     
     public static void askCreatePdf(String searchTerm, InputReader inputReader) {
     	flgvalidopt = false;    		
-		while(flgvalidopt == false) {    			
+		while(flgvalidopt == false) {    
 			displayCreatePDFOpt(searchTerm, pdfName, outputDirectory, searchResults, inputReader);
 			}
     }
@@ -148,8 +148,9 @@ public class Main {
 //    	@SuppressWarnings("resource")
 //		Scanner scanner = new Scanner(System.in);
     	
-    	System.out.println("\nPrint Search Results in PDF File? [Y/N] ");
 //    	String createPDFind = scanner.nextLine();
+    	
+    	System.out.println("\nPrint Search Results in PDF File? [Y/N] ");
     	createPDFind = inputReader.nextLine();
     	
     	switch(createPDFind.toUpperCase()) {

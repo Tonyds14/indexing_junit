@@ -285,10 +285,17 @@ class IndexingTest {
     }
 	
 	@Test
-    public void testAskCreatePdf() {
+    public void testAskCreatePdfYZeroSearchResults() {
 		String mockSearchTerm = "mockTerm";
 		InputReader mockInputReader = mock(InputReader.class);
+		
+		// Mock the behavior of the InputReader
+        when(mockInputReader.nextLine()).thenReturn("Y");
+		
 		Main.askCreatePdf(mockSearchTerm,mockInputReader);
+		
+		// Verify that the expected methods are called
+        Mockito.verify(mockInputReader, times(1)).nextLine();
 	}
 	
 	@Test
