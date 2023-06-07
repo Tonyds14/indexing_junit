@@ -39,9 +39,14 @@ import static org.mockito.Mockito.*;
 
 
 class IndexingTest {  
-    
+    GetExpectedResults expected = new GetExpectedResults();  //get parameters of expectedresults.properties
+    String expectedInputDirectory = expected.getInputDirectory();
+    String expectedOutputDirectory = expected.getOutputDirectory();
+    String expectedPdfName = expected.getPdfName();
+    String expectedVersion = expected.getVersion();
+	
 	@Test
-    public void testAccessConfigInfo() {
+    public void test1AccessConfigInfo() {
         // Test inputDirectory functionality
         ConfigInfo configInfo = new ConfigInfo();
         String inputDirectory = configInfo.getInputDirectory();
@@ -55,36 +60,36 @@ class IndexingTest {
         assertNotNull(pdfName);
         assertNotNull(version);
         
-        String inputPath = "C:\\BA Training\\Indexing\\INPUT\\";
+        String inputPath = expectedInputDirectory;
 //        String inputPath = "C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\";
         assertEquals(inputDirectory,inputPath);
-        String outputPath = "C:\\BA Training\\Indexing\\OUTPUT\\";
+        String outputPath = expectedOutputDirectory;
 //        String outputPath = "C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\OUTPUT\\";
         assertEquals(outputDirectory,outputPath);  
-        String outPdfName = "Search_Results_of_";
+        String outPdfName = expectedPdfName;
         assertEquals(pdfName,outPdfName); 
-        String outPgmVersion = "1.0.0.0";
+        String outPgmVersion = expectedVersion;
         assertEquals(version,outPgmVersion);
     }    
     
     @Test
-    public void testPopulateMainConfigFields() {
+    public void test2PopulateMainConfigFields() {
 //    	Main main = new Main();
     	Main.populateMainConfigFieldsAndFileList();    	
     }
     
     @Test
-    public void testGetListofExcelFiles() {
+    public void test3GetListofExcelFiles() {
 //    	Main main = new Main();
-    	String inputDirectory = "C:\\BA Training\\Indexing\\INPUT\\";
+    	String inputDirectory = expectedInputDirectory;
 //    	String inputDirectory = "C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\";
     	
     	List<File> expectedFiles = new ArrayList<>();
-    	File file1 = new File("C:\\BA Training\\Indexing\\INPUT\\Random2.xlsx");
-        File file2 = new File("C:\\BA Training\\Indexing\\INPUT\\Random1.xlsx");
-        File file3 = new File("C:\\BA Training\\Indexing\\INPUT\\Dog.xlsx");
-        File file4 = new File("C:\\BA Training\\Indexing\\INPUT\\Cat.xlsx");
-        File file5 = new File("C:\\BA Training\\Indexing\\INPUT\\BearBoarBird.xlsx");
+    	File file1 = new File(expectedInputDirectory +"Random2.xlsx");
+        File file2 = new File(expectedInputDirectory +"Random1.xlsx");
+        File file3 = new File(expectedInputDirectory +"Dog.xlsx");
+        File file4 = new File(expectedInputDirectory +"Cat.xlsx");
+        File file5 = new File(expectedInputDirectory +"BearBoarBird.xlsx");
 //        File file1 = new File("C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\Random2.xlsx");
 //        File file2 = new File("C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\Random1.xlsx");
 //        File file3 = new File("C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\Dog.xlsx");
@@ -115,9 +120,9 @@ class IndexingTest {
     
    
 	@Test
-	public void testSearchExcel() {
+	public void test4SearchExcel() {
 		// Prepare test data
-		File testFile = new File("C:\\BA Training\\Indexing\\INPUT\\Random1.xlsx");
+		File testFile = new File(expectedInputDirectory +"Random1.xlsx");
 //		File testFile = new File("C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\Random1.xlsx");
         String searchTerm = "chick";         
         
@@ -164,8 +169,26 @@ class IndexingTest {
         
 	}	
 	
+	
 	@Test
-	public void testBuildSearchResultMssg() {
+	public void test4bSearchExcel() {
+		// Prepare test data
+		File testFile = new File(expectedInputDirectory +"Dog.xlsx");
+//		File testFile = new File("C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\INPUT\\Random1.xlsx");
+        String searchTerm = "dog";         
+        
+        ArrayList<SearchInfo> searchResults = new ArrayList<>();
+        SearchExcelFile search = new SearchExcelFile();        
+        search.searchExcelFile(testFile, searchTerm, searchResults);
+        
+        List<SearchInfo> actualResults = new ArrayList<>();
+        
+	}	
+	
+	
+	
+	@Test
+	public void test5BuildSearchResultMssg() {
 		BuildSearchResultMssg build = new BuildSearchResultMssg();
 		//test data
 		String mocksearchTerm = "chicken";
@@ -182,12 +205,12 @@ class IndexingTest {
 	}
 	
 	@Test
-	public void testCreatePDF() {
+	public void test6CreatePDF() {
 		CreatePDF create = new CreatePDF();
 		//test data
 		String mocksearchTerm = "chicken";
 		String mockpdfName ="Mock_Search_Results_of_";
-		String mockoutputDirectory ="C:\\BA Training\\Indexing\\OUTPUT\\";
+		String mockoutputDirectory =expectedOutputDirectory;
 //		String mockoutputDirectory ="C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\OUTPUT\\";
 		ArrayList<SearchInfo> mocksearchResults = new ArrayList<>();		
 		mocksearchResults.add(new SearchInfo(1, "Random1.xlsx", "Random1-Sheet1",16,"G"));
@@ -202,7 +225,7 @@ class IndexingTest {
 	}
 	
 	@Test
-    public void testSetStartTimeandClearSearchResults() {
+    public void test7SetStartTimeandClearSearchResults() {
 //    	Main main = new Main();
     	Main.setStartTimeandClearSearchResults();    	
     }
@@ -210,14 +233,14 @@ class IndexingTest {
 	
 
 	@Test
-    public void testSubmitSearchTaskForEachExcelFile() throws InterruptedException, ExecutionException {
+    public void test8SubmitSearchTaskForEachExcelFile() throws InterruptedException, ExecutionException {
 		//test data
 		List<File> mockFiles = new ArrayList<>();
-	 	File file1 = new File("C:\\BA Training\\Indexing\\INPUT\\Random2.xlsx");
-        File file2 = new File("C:\\BA Training\\Indexing\\INPUT\\Random1.xlsx");
-        File file3 = new File("C:\\BA Training\\Indexing\\INPUT\\Dog.xlsx");
-        File file4 = new File("C:\\BA Training\\Indexing\\INPUT\\Cat.xlsx");
-        File file5 = new File("C:\\BA Training\\Indexing\\INPUT\\BearBoarBird.xlsx");
+	 	File file1 = new File(expectedInputDirectory +"Random2.xlsx");
+        File file2 = new File(expectedInputDirectory +"Random1.xlsx");
+        File file3 = new File(expectedInputDirectory +"Dog.xlsx");
+        File file4 = new File(expectedInputDirectory +"Cat.xlsx");
+        File file5 = new File(expectedInputDirectory +"BearBoarBird.xlsx");
         mockFiles.add(file1);
         mockFiles.add(file2);
         mockFiles.add(file3);
@@ -261,12 +284,12 @@ class IndexingTest {
 	
 	//calculateSearchDuration()
 	@Test
-    public void testCalculateSearchDuration() {
+    public void test9CalculateSearchDuration() {
 		Main.calculateSearchDuration();		
 	}
 	
 	@Test
-    public void testDisplayHome() {
+    public void test10DisplayHome() {
 	    // Create a mock input reader
         InputReader mockInputReader = mock(InputReader.class);
 
@@ -285,7 +308,7 @@ class IndexingTest {
     }
 	
 	@Test
-    public void testAskCreatePdfYZeroSearchResults() {
+    public void test11AskCreatePdfYZeroSearchResults() {
 		String mockSearchTerm = "mockTerm";
 		InputReader mockInputReader = mock(InputReader.class);
 		
@@ -299,13 +322,13 @@ class IndexingTest {
 	}
 	
 	@Test
-	public void testDisplayCreatePDFOptY() {
+	public void test12DisplayCreatePDFOptY() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockCreatePDFind = "Y";
 		String mocksearchTerm = "chicken";
 		String mockpdfName ="Mock_Search_Results_of_";
-		String mockoutputDirectory ="C:\\BA Training\\Indexing\\OUTPUT\\";
+		String mockoutputDirectory =expectedOutputDirectory;
 //		String mockoutputDirectory ="C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\OUTPUT\\";
 		ArrayList<SearchInfo> mocksearchResults = new ArrayList<>();		
 		mocksearchResults.add(new SearchInfo(1, "Random1.xlsx", "Random1-Sheet1",16,"G"));
@@ -328,13 +351,13 @@ class IndexingTest {
     }
 	
 	@Test
-	public void testDisplayCreatePDFOptYZeroSearchResults() {
+	public void test13DisplayCreatePDFOptYZeroSearchResults() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockCreatePDFind = "Y";
 		String mocksearchTerm = "chicken";
 		String mockpdfName ="Mock_Search_Results_of_";
-		String mockoutputDirectory ="C:\\BA Training\\Indexing\\OUTPUT\\";
+		String mockoutputDirectory =expectedOutputDirectory;
 //		String mockoutputDirectory ="C:\\Users\\USER\\Desktop\\BA Training - Java\\Indexing\\OUTPUT\\";
 		ArrayList<SearchInfo> mocksearchResults = new ArrayList<>();		
 		
@@ -350,7 +373,7 @@ class IndexingTest {
     }
 	
 	@Test
-	public void testDisplayCreatePDFOptN() {
+	public void test14DisplayCreatePDFOptN() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockCreatePDFind = "N";
@@ -366,7 +389,7 @@ class IndexingTest {
     }
 	
 	@Test
-	public void testDisplayCreatePDFOptx() {
+	public void test15DisplayCreatePDFOptx() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockCreatePDFind = "x";
@@ -382,7 +405,7 @@ class IndexingTest {
     }
    
 	@Test  //commented out due to conflict in testSubmitSearchTaskForEachExcelFile() 
-	public void testAskSearchAgainN() {
+	public void test16AskSearchAgainN() {
 //		InputReader mockInputReader = Mockito.mock(InputReader.class);
 //		
 //		String mockReSearchind = "n";
@@ -401,7 +424,7 @@ class IndexingTest {
 
 		
 	@Test
-	public void testDisplayReSearchOptY() {
+	public void test17DisplayReSearchOptY() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockReSearchind = "Y";
@@ -420,7 +443,7 @@ class IndexingTest {
 	}
    
 	@Test
-	public void testDisplayReSearchOptN() {
+	public void test18DisplayReSearchOptN() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockReSearchind = "n";
@@ -439,7 +462,7 @@ class IndexingTest {
 	}
 	
 	@Test
-	public void testDisplayReSearchOptx() {
+	public void test19DisplayReSearchOptx() {
 		InputReader mockInputReader = mock(InputReader.class);
 		
 		String mockReSearchind = "x";
@@ -459,7 +482,7 @@ class IndexingTest {
 	
 	 
 	@Test
-	public void testGetListofExcelFilesInvalidDirectoryPath() { 
+	public void test20GetListofExcelFilesInvalidDirectoryPath() { 
 		String mockPath = "C:\\NonExisting\\Folder";
 		List<File> mockExcelFiles = new ArrayList<>();
 
@@ -485,7 +508,7 @@ class IndexingTest {
     }
 	
 	@Test
-    public void testDisplayMssgForZeroFiles() {
+    public void test21DisplayMssgForZeroFiles() {
 		// Redirect System.out to capture the console output
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
@@ -495,7 +518,7 @@ class IndexingTest {
         Main.displayMssgForZeroFiles(mockFiles);
         // Assert the console output
         String consoleOutput = outputStream.toString().trim();
-        assertEquals("No excel files found in Input Folder: " + Main.inputDirectory, consoleOutput);
+        assertEquals("No excel files found in Input Folder:" + Main.inputDirectory, consoleOutput);
         
         // Reset System.out
         System.setOut(System.out);        

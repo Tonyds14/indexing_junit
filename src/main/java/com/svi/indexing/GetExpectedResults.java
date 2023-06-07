@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigInfo {
+public class GetExpectedResults {
     private Properties properties;        
     
-    public ConfigInfo() {
+    public GetExpectedResults() {
         loadProperties();
     }
     
@@ -17,7 +17,7 @@ public class ConfigInfo {
 //        try (InputStream input = new FileInputStream("config.properties")) {
 //            properties.load(input);
             
-        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config/config.properties")) {
+        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config/expectedresults.properties")) {
             properties.load(inputStream);  
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,6 +39,5 @@ public class ConfigInfo {
     public String getVersion() {
         return properties.getProperty("version");
     }
-    
     
 }
