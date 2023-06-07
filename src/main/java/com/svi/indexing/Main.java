@@ -71,8 +71,10 @@ public class Main {
     public static void populateMainConfigFieldsAndFileList() {
     	//Access config.properties
     	ConfigInfo configInfo = new ConfigInfo();
-    	inputDirectory = configInfo.getInputDirectory();
-    	outputDirectory = configInfo.getOutputDirectory();
+//    	inputDirectory = configInfo.getInputDirectory();
+//    	outputDirectory = configInfo.getOutputDirectory();
+    	inputDirectory = configInfo.inputDirectory;
+    	outputDirectory = configInfo.outputDirectory;
     	pdfName = configInfo.getPdfName();
     	version =configInfo.getVersion();
 

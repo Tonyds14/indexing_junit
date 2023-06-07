@@ -39,9 +39,11 @@ import static org.mockito.Mockito.*;
 
 
 class IndexingTest {  
-    GetExpectedResults expected = new GetExpectedResults();  //get parameters of expectedresults.properties
-    String expectedInputDirectory = expected.getInputDirectory();
-    String expectedOutputDirectory = expected.getOutputDirectory();
+    GetExpectedConfig expected = new GetExpectedConfig();  //get parameters of expectedresults.properties
+//    String expectedInputDirectory = expected.getInputDirectory();
+//    String expectedOutputDirectory = expected.getOutputDirectory();
+    String expectedInputDirectory = expected.inputDirectory;
+    String expectedOutputDirectory = expected.outputDirectory;
     String expectedPdfName = expected.getPdfName();
     String expectedVersion = expected.getVersion();
 	

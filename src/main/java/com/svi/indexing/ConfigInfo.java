@@ -4,9 +4,14 @@ package com.svi.indexing;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.io.FileInputStream;
 
 public class ConfigInfo {
-    private Properties properties;        
+    private Properties properties;  
+    String projectPath = "";
+    String inputDirectory ="";
+    String outputDirectory ="";   
+    
     
     public ConfigInfo() {
         loadProperties();
@@ -14,17 +19,36 @@ public class ConfigInfo {
     
     private void loadProperties() {
         properties = new Properties();
-//        try (InputStream input = new FileInputStream("config.properties")) {
-//            properties.load(input);
             
-        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config/config.properties")) {
-            properties.load(inputStream);  
-        } catch (IOException e) {
+//        try (InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config/config.properties")) {
+//            properties.load(inputStream);  
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        
+        try 
+        	(InputStream inputStream = Main.class.getClassLoader().getResourceAsStream("config/config.properties")) {
+              properties.load(inputStream);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // Get the project path
+        projectPath = System.getProperty("user.dir");
+
+        // Replace the placeholder with the project path in the properties
+        inputDirectory = properties.getProperty("Input_directory");
+        inputDirectory = inputDirectory.replace("${projectPath}", projectPath);
+
+        outputDirectory = properties.getProperty("Output_directory");
+        outputDirectory = outputDirectory.replace("${projectPath}", projectPath);
+
+        // Use the updated directory paths for further processing
+        System.out.println("Input Directory: " + inputDirectory);
+        System.out.println("Output Directory: " + outputDirectory);
     }
     
-    public String getInputDirectory() {
+  	public String getInputDirectory() {
         return properties.getProperty("Input_directory");
     }
     
