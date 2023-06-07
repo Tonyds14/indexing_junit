@@ -29,9 +29,23 @@ public class GetExpectedConfig {
           properties.load(inputStream);
         } catch (Exception e) {
         	e.printStackTrace();
+        }
+        
+        // Get the project path
+        projectPath = System.getProperty("user.dir");
+
+        // Replace the placeholder with the project path in the properties
+        inputDirectory = properties.getProperty("Input_directory");
+        inputDirectory = inputDirectory.replace("${projectPath}", projectPath);
+
+        outputDirectory = properties.getProperty("Output_directory");
+        outputDirectory = outputDirectory.replace("${projectPath}", projectPath);
+
+        // Use the updated directory paths for further processing
+        System.out.println("Input Directory: " + inputDirectory);
+        System.out.println("Output Directory: " + outputDirectory);
     }
         
-    }
     
     public String getInputDirectory() {
         return properties.getProperty("Input_directory");
