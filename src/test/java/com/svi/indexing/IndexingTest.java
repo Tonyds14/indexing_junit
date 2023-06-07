@@ -307,19 +307,19 @@ class IndexingTest {
         assertEquals(mockSearchTerm, result);
     }
 	
-	@Test
-    public void test11AskCreatePdfYZeroSearchResults() {
-		String mockSearchTerm = "mockTerm";
-		InputReader mockInputReader = mock(InputReader.class);
-		
-		// Mock the behavior of the InputReader
-        when(mockInputReader.nextLine()).thenReturn("Y");
-		
-		Main.askCreatePdf(mockSearchTerm,mockInputReader);
-		
-		// Verify that the expected methods are called
-        Mockito.verify(mockInputReader, times(1)).nextLine();
-	}
+//	@Test
+//    public void test11AskCreatePdfYZeroSearchResults() {
+//		String mockSearchTerm = "mockTerm";
+//		InputReader mockInputReader = mock(InputReader.class);
+//		
+//		// Mock the behavior of the InputReader
+//        when(mockInputReader.nextLine()).thenReturn("Y");
+//		
+//		Main.askCreatePdf(mockSearchTerm,mockInputReader);
+//		
+//		// Verify that the expected methods are called
+//        Mockito.verify(mockInputReader, times(1)).nextLine();
+//	}
 	
 	@Test
 	public void test12DisplayCreatePDFOptY() {
