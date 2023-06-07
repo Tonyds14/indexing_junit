@@ -39,6 +39,13 @@ import static org.mockito.Mockito.*;
 
 
 class IndexingTest {  
+	ConfigInfo config = new ConfigInfo();
+	String actualInputDirectory = config.inputDirectory;
+    String actualOutputDirectory = config.outputDirectory;
+    String actualPdfName = config.getPdfName();
+    String actualVersion = config.getVersion();
+    
+	
     GetExpectedConfig expected = new GetExpectedConfig();  //get parameters of expectedresults.properties
 //    String expectedInputDirectory = expected.getInputDirectory();
 //    String expectedOutputDirectory = expected.getOutputDirectory();
@@ -51,8 +58,10 @@ class IndexingTest {
     public void test1AccessConfigInfo() {
         // Test inputDirectory functionality
         ConfigInfo configInfo = new ConfigInfo();
-        String inputDirectory = configInfo.getInputDirectory();
-        String outputDirectory = configInfo.getOutputDirectory();
+//        String inputDirectory = configInfo.getInputDirectory();
+//        String outputDirectory = configInfo.getOutputDirectory();
+        String inputDirectory = actualInputDirectory;
+        String outputDirectory = actualOutputDirectory;   
         String pdfName = configInfo.getPdfName();
         String version = configInfo.getVersion();
         
