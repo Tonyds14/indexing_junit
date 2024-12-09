@@ -2,6 +2,8 @@ Java program that will ask user to perform search term/word in excel files found
 Output search results will be displayed in console in format that indicates file name, sheet name, row and column where the term exist.
 Program also gives option to user to print out search results in PDF file to be put in "OUTPUT" folder.
 
+with JUNIT, jacoco report, concurrency, itextpdf
+
 Java batch program that will do/have the ff:
 •	Configuration file (config.properties) with the ff variables
 o	Input_directory
@@ -30,3 +32,20 @@ o	Search result < 1s
 Input files
 •	Excel file will be provided
 •	Data in the sheets for the input files will be limited to the columns A-H and rows 1-30
+
+Sample Output
+
+![Search_Results_2of2](https://github.com/user-attachments/assets/26741643-af88-45e1-95be-295e1e53caa8)
+![Search_Results_1of2](https://github.com/user-attachments/assets/af684f38-4492-4bb2-9d31-f8b281693976)
+
+![Create_PDF_1of2](https://github.com/user-attachments/assets/3f9df2e4-05b7-406d-8b24-1125f49eb72c)
+![Create_PDF_2of2](https://github.com/user-attachments/assets/cfa29169-7d2a-475a-878f-34393b614fa4)
+
+![Junit_Result_1](https://github.com/user-attachments/assets/14b8051d-f568-49da-a547-f44103eec39e)
+![Junit_Result_2](https://github.com/user-attachments/assets/428561ce-0af5-4e1b-ab8b-c1fa963e435a)
+![Sample_Jacoco_report](https://github.com/user-attachments/assets/72c05eb2-b33a-4119-a69c-2aff81c4c0ad)
+
+
+
+
+
