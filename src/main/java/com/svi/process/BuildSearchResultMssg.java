@@ -1,6 +1,8 @@
-package com.svi.indexing;
+package com.svi.process;
 
 import java.util.ArrayList;
+
+import com.svi.object.SearchInfo;
 
 public class BuildSearchResultMssg {
 	

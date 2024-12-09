@@ -1,4 +1,4 @@
-package com.svi.indexing;
+package com.svi.object;
 
 import java.util.Scanner;
 

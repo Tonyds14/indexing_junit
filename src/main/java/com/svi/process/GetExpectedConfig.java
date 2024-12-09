@@ -1,15 +1,17 @@
-package com.svi.indexing;
+package com.svi.process;
 
 //import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import com.svi.indexing.Main;
+
 public class GetExpectedConfig {
     private Properties properties;  
     String projectPath = "";
-    String inputDirectory ="";
-    String outputDirectory ="";
+    public String inputDirectory ="";
+    public String outputDirectory ="";
     
     public GetExpectedConfig() {
         loadProperties();

@@ -1,16 +1,19 @@
-package com.svi.indexing;
+package com.svi.object;
 
 //import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import com.svi.indexing.Main;
+
 import java.io.FileInputStream;
 
 public class ConfigInfo {
     private Properties properties;  
     String projectPath = "";
-    String inputDirectory ="";
-    String outputDirectory ="";   
+    public String inputDirectory ="";
+    public String outputDirectory ="";   
     
     
     public ConfigInfo() {

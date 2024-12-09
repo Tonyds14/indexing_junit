@@ -1,4 +1,4 @@
-package com.svi.indexing;
+package com.svi.object;
 
 public class SearchInfo {
 	private int resultnum;

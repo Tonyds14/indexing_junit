@@ -1,4 +1,4 @@
-package com.svi.indexing;
+package com.svi.process;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,11 +11,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
+import com.svi.object.SearchInfo;
+
 public class SearchExcelFile {
 	private ArrayList<SearchInfo> results = new ArrayList<>();
 //	private ArrayList<SearchInfo> searchResults = new ArrayList<>();  
 	
-	ArrayList<SearchInfo> searchExcelFile(File file, String searchTerm, ArrayList<SearchInfo> searchResults) {
+	public ArrayList<SearchInfo> searchExcelFile(File file, String searchTerm, ArrayList<SearchInfo> searchResults) {
         
         FileInputStream fis = null;
         int resultnum = 0;
