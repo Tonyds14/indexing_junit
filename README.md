@@ -3,6 +3,7 @@ Output search results will be displayed in console in format that indicates file
 Program also gives option to user to print out search results in PDF file to be put in "OUTPUT" folder.
 
 with JUNIT, jacoco report, concurrency, itextpdf
+Note: run maven build, maven test prior to execution of JUNIT
 
 Java batch program that will do/have the ff:
 •	Configuration file (config.properties) with the ff variables
